@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var glob = require('glob'),
+    fs = require('fs'),
     cp = require('child_process');
     
 function build() {
@@ -10,10 +11,10 @@ function build() {
   }
 
   return new Promise((resolve, reject) => {
-    cp.exec(`node_modules/webpack/bin/webpack.js --config ${configPath} --json --display-used-exports`, (err, stdout) => {
+    cp.exec(`node_modules/webpack/bin/webpack.js --config ${configPath} --json --display-used-exports > stats.json`, (err, stdout) => {
       err ? 
         reject(err) : 
-        resolve(JSON.parse(stdout)); 
+        resolve(); 
     });
   })
 }
@@ -34,8 +35,10 @@ function scanDirs() {
   })
 }
 
-function grabModules(stats) {
-  let modules = {};
+function grabModules() {
+  let data = fs.readFileSync('./stats.json', { encoding:'utf8' }),
+      stats = JSON.parse(data),
+      modules = {};
 
   function traverse(item) {
     if (item.modules) {
@@ -98,7 +101,10 @@ function viewReport(unused) {
 
   if (!!exportsSrc.length) {
     console.log('\nUnused exports');
-    console.table(exportsSrc.map(src => [src, unused.exports[src].join()]));
+    
+    exportsSrc.forEach(src => {
+      console.log(`-------------\n\n${src}\n${unused.exports[src].join('\n')}\n-------------`);
+    });
   }
 }
 
@@ -118,8 +124,9 @@ if (process.argv[2] == '--help' || process.argv[2] == '-h' ) {
 } else {
 
   Promise.all([build(), scanDirs()])
-    .then(([stats, files]) => {
-      let modules = grabModules(stats),
+    .then(([_, files]) => {
+     
+      let modules = grabModules(),
           unused = checkUnused(files, modules);
 
       viewReport(unused); 
