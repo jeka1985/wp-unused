@@ -1,0 +1,29 @@
+{
+  "name": "wp-unused",
+  "version": "0.1.0",
+  "description": "Util to find unused code in webpack based project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eugene Yemelin",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeka1985/wp-unused.git"
+  },
+  "keywords": [
+    "webpack",
+    "dead",
+    "code",
+    "unused",
+    "code"
+  ],
+  "bugs": {
+    "url": "https://github.com/jeka1985/wp-unused/issues"
+  },
+  "homepage": "https://github.com/jeka1985/wp-unused#readme",
+  "dependencies": {
+    "glob": "^7.1.6"
+  }
+}
