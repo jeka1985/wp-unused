@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var glob = require('glob'),
     cp = require('child_process');
     

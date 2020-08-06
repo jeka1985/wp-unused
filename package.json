@@ -19,6 +19,9 @@
     "unused",
     "code"
   ],
+  "files": [
+    "bin"
+  ],
   "bugs": {
     "url": "https://github.com/jeka1985/wp-unused/issues"
   },
