@@ -10,7 +10,7 @@ function build() {
   }
 
   return new Promise((resolve, reject) => {
-    cp.exec(`npx webpack --config ${configPath} --json --display-used-exports`, (err, stdout) => {
+    cp.exec(`./node_modules/webpack/bin/webpack.js --config ${configPath} --json --display-used-exports`, (err, stdout) => {
       err ? 
         reject(err) : 
         resolve(JSON.parse(stdout));
