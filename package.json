@@ -1,6 +1,6 @@
 {
   "name": "wp-unused",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Util to find unused code in webpack based project",
   "main": "bin/index.js",
   "scripts": {
