@@ -2,7 +2,6 @@
   "name": "wp-unused",
   "version": "0.1.4",
   "description": "Util to find unused code in webpack based project",
-  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,9 +17,6 @@
     "code",
     "unused",
     "code"
-  ],
-  "files": [
-    "bin"
   ],
   "bugs": {
     "url": "https://github.com/jeka1985/wp-unused/issues"
