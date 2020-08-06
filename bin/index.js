@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 var glob = require('glob'),
     cp = require('child_process');
     
@@ -20,10 +19,10 @@ function build() {
 }
 
 function scanDirs() {
-  let root = process.argv[3];
+  let root = process.argv[2];
 
-  if (!configPath) {
-    throw new Error("No root folder provided")
+  if (!root) {
+    throw new Error("No target folder provided")
   }
 
   return new Promise((resolve, reject) => {
@@ -117,13 +116,13 @@ if (process.argv[2] == '--help' || process.argv[2] == '-h' ) {
       - Doesn't work for array webpack.configs
   `)
 } else {
+
   Promise.all([build(), scanDirs()])
     .then(([stats, files]) => {
+     
       let modules = grabModules(stats),
           unused = checkUnused(files, modules);
 
       viewReport(unused); 
     })
 }
-
-
