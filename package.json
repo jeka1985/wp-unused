@@ -1,6 +1,6 @@
 {
   "name": "wp-unused",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Util to find unused code in webpack based project",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
