@@ -10,10 +10,10 @@ function build() {
   }
 
   return new Promise((resolve, reject) => {
-    cp.exec(`./node_modules/webpack/bin/webpack.js --config ${configPath} --json --display-used-exports`, (err, stdout) => {
+    cp.exec(`node_modules/webpack/bin/webpack.js --config ${configPath} --json --display-used-exports`, (err, stdout) => {
       err ? 
         reject(err) : 
-        resolve(JSON.parse(stdout));
+        resolve(JSON.parse(stdout)); 
     });
   })
 }
@@ -26,7 +26,7 @@ function scanDirs() {
   }
 
   return new Promise((resolve, reject) => {
-    glob(root + '**/*.*', function (err, res) {
+    glob(root + '/**/*.*', function (err, res) {
       err ? 
         reject(err) : 
         resolve(res);
@@ -119,10 +119,12 @@ if (process.argv[2] == '--help' || process.argv[2] == '-h' ) {
 
   Promise.all([build(), scanDirs()])
     .then(([stats, files]) => {
-     
       let modules = grabModules(stats),
           unused = checkUnused(files, modules);
 
       viewReport(unused); 
+    })
+    .catch(err => {
+      throw err
     })
 }
