@@ -4,7 +4,7 @@ var glob = require('glob'),
     cp = require('child_process');
     
 function build() {
-  let configPath = process.argv[2];
+  let configPath = process.argv[3];
 
   if (!configPath) {
     throw new Error("No webpack config provided")
@@ -20,8 +20,14 @@ function build() {
 }
 
 function scanDirs() {
+  let root = process.argv[3];
+
+  if (!configPath) {
+    throw new Error("No root folder provided")
+  }
+
   return new Promise((resolve, reject) => {
-    glob('./src/**/*.*', function (err, res) {
+    glob(root + '**/*.*', function (err, res) {
       err ? 
         reject(err) : 
         resolve(res);
