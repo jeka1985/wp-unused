@@ -22,7 +22,7 @@
     "url": "https://github.com/jeka1985/wp-unused/issues"
   },
   "bin": {
-    "webpack": "bin/index.js"
+    "wp-unused": "bin/index.js"
   },
   "homepage": "https://github.com/jeka1985/wp-unused#readme",
   "dependencies": {
